@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ anime.title }} 詳細資訊</title>
+</head>
+<body>
+    <h1>{{ anime.title }}</h1>
+    <p><strong>作者：</strong> {{ anime.author }}</p>
+    <p><strong>內容：</strong> {{ anime.content }}</p>
+
+    <!-- 刪除按鈕 -->
+    <form action="{{ url_for('delete_anime', id=anime.id) }}" method="POST">
+        <button type="submit" class="delete-button">刪除此動漫</button>
+    </form>
+
+    <a href="{{ url_for('home') }}">返回動漫清單</a>
+</body>
+</html>

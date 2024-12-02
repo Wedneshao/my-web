@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>動漫清單</title>
+    <style>
+        .add-button {
+            font-size: 24px;
+            text-decoration: none;
+            color: white;
+            background-color: green;
+            padding: 10px 15px;
+            border-radius: 50%;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        .delete-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>動漫清單</h1>
+    <ul>
+        {% for anime in anime_list %}
+            <li>
+                <a href="{{ url_for('anime_detail', id=anime.id) }}"><strong>{{ anime.title }}</strong></a> - 作者: {{ anime.author }}<br>
+                <p>{{ anime.content }}</p>
+
+                <!-- 刪除按鈕 -->
+                <form action="{{ url_for('delete_anime', id=anime.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="delete-button">刪除</button>
+                </form>
+            </li>
+        {% else %}
+            <li>目前沒有任何動漫資料。</li>
+        {% endfor %}
+    </ul>
+
+    <!-- 加號按鈕 -->
+    <a href="{{ url_for('add_anime') }}" class="add-button">+</a>
+</body>
+</html>
